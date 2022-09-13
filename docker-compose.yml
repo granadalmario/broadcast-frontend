@@ -1,0 +1,9 @@
+version: '2'
+
+services:
+  myfront:
+    container_name: myfront
+    build: .
+    ports:
+      - 4200:80
+     

@@ -1,0 +1,111 @@
+﻿<h1 *ngIf="isAddMode">Añadir Empleado</h1>
+<h1 *ngIf="!isAddMode">Editar Empleado</h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="firstName"> Nombre</label>
+            <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+            <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                <div *ngIf="f.firstName.errors.required">First Name is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label for="lastName">Apellido</label>
+            <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+            <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="username">Username</label>
+            <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+            <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                <div *ngIf="f.username.errors.required">Username is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label for="password">
+                Password
+                <em *ngIf="!isAddMode">(Leave blank to keep the same password)</em>
+            </label>
+            <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required">Password is required</div>
+                <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="link"> Link</label>
+            <input type="text" formControlName="link" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.link.errors }" />
+            <div *ngIf="submitted && f.link.errors" class="invalid-feedback">
+                <div *ngIf="f.link.errors.required">Link is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label for="nacionalidad">Nacionalidad</label>
+            <input type="text" formControlName="nacionalidad" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nacionalidad.errors }" />
+            <div *ngIf="submitted && f.nacionalidad.errors" class="invalid-feedback">
+                <div *ngIf="f.nacionalidad.errors.required">Nacionalidad is required</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="ciudad"> Ciudad</label>
+            <input type="text" formControlName="ciudad" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.ciudad.errors }" />
+            <div *ngIf="submitted && f.ciudad.errors" class="invalid-feedback">
+                <div *ngIf="f.ciudad.errors.required">Ciudad is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label for="edad">Edad</label>
+            <input type="number" min="18" max="100" ng-model="qty.qty" size="20" formControlName="edad" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.edad.errors }" />
+            <div *ngIf="submitted && f.edad.errors" class="invalid-feedback">
+                <div *ngIf="f.edad.errors.required">Edad is required</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="email"> Email</label>
+            <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors.required">Email is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label for="movil">Móvil</label>
+            <input type="number"  formControlName="movil" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.movil.errors }" />
+            <div *ngIf="submitted && f.movil.errors" class="invalid-feedback">
+                <div *ngIf="f.movil.errors.required">Movil is required</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="altura"> Altura</label>
+            <input type="text" formControlName="altura" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.altura.errors }" />
+            <div *ngIf="submitted && f.altura.errors" class="invalid-feedback">
+                <div *ngIf="f.altura.errors.required">Altura is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label for="peso">Peso</label>
+            <input type="number" min="18" max="100" ng-model="qty.qty" size="20" formControlName="peso" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.peso.errors }" />
+            <div *ngIf="submitted && f.peso.errors" class="invalid-feedback">
+                <div *ngIf="f.peso.errors.required">Peso is required</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Save
+        </button>
+        <a routerLink="/empleados" class="btn btn-link">Cancel</a>
+    </div>
+</form>

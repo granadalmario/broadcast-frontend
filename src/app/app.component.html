@@ -1,0 +1,27 @@
+﻿<!-- nav -->
+<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="user">
+    <div class="navbar-nav">
+        <a class="nav-item nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+        <!--<a class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Users</a>-->
+        <!--<a class="nav-item nav-link" routerLink="/empleados" routerLinkActive="active">Empleados</a>-->
+        <!--<a class="nav-item nav-link" routerLink="/citas" routerLinkActive="active">Citas</a>-->
+        <a class="nav-item nav-link" (click)="logout()">Logout</a>
+    </div>
+</nav>
+
+<!-- main app container -->
+<div class="app-container" [ngClass]="{ 'bg-light': user }">
+    <alert></alert>
+    <router-outlet></router-outlet>
+</div>
+
+<!-- credits -->
+<div class="text-center mt-4">
+    <p>
+        <img src="./assets/images/meingenieria.png" alt=""/>
+
+    </p>
+    <p>
+        <a href="https://meingenieria.com/" target="_top">meingenieria.com</a>
+    </p>
+</div>
