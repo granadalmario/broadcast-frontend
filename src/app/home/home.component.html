@@ -2,32 +2,25 @@
     <div class="container">
         <h1>Hi {{user.firstName}}!</h1>
         <div class ="top" >
-            <div class ="top1" style="text-align: center;" ><i class="material-icons">play_arrow</i></div>
-            <div class ="top2"><p> Playing english, press again to pause or other flag to change the languaje </p></div>
+            <div class ="top2"><p> {{statusText}} </p></div>
         </div>
-        <!--<a href="\play">-->
-            <div class ="countries">
-                <img style="border-radius:50%; margin: 22px 1em 0px auto; filter: grayscale(100%);" src="./assets/images/catalunya.png" width="125" height="125" alt="" border="3"/>
-                <img style="border-radius:50%; margin: 22px 1em 0px auto; filter: grayscale(100%);" src="./assets/images/spain.png" width="125" height="125" alt="" />
-                <img style="border-radius:50%; margin: 22px 1em 0px auto;"  src="./assets/images/ukusa2.png" width="125" height="125" alt="" />
-                <img style="border-radius:50%; margin: 22px 1em 0px auto;  filter: grayscale(100%);"  src="./assets/images/france.png" width="125" height="125" alt="" />
-                <img style="border-radius:50%; margin: 22px 1em 0px auto;  filter: grayscale(100%);"  src="./assets/images/germany.png" width="125" height="125" alt="" />
-                <img style="border-radius:50%; margin: 22px 1em 0px auto;  filter: grayscale(100%);"  src="./assets/images/italy.png" width="125" height="125" alt="" />
-                <img style="border-radius:50%; margin: 22px 1em 0px auto;  filter: grayscale(100%);"  src="./assets/images/portubrasil.jpg" width="125" height="125" alt="" />
-                <img style="border-radius:50%; margin: 22px 1em 0px auto;  filter: grayscale(100%);"  src="./assets/images/nederland.png" width="125" height="125" alt="" />
-                <img style="border-radius:50%; margin: 22px 1em 0px auto;  filter: grayscale(100%);"  src="./assets/images/suecia.png" width="125" height="125" alt="" />
-                <img style="border-radius:50%; margin: 22px 1em 0px auto;"  src="./assets/images/norway.png" width="125" height="125" alt="" />
-                <img style="border-radius:50%; margin: 22px 1em 0px auto;"  src="./assets/images/rusia.png" width="125" height="125" alt="" />
-                <img style="border-radius:50%; margin: 22px 1em 0px auto;"  src="./assets/images/japan2.jpg" width="125" height="125" alt="" />
-                <img style="border-radius:50%; margin: 22px 1em 0px auto;"  src="./assets/images/china.png" width="125" height="125" alt="" />
-                <img style="border-radius:50%; margin: 22px 1em 0px auto;"  src="./assets/images/arab.png" width="125" height="125" alt="" />
-                <img style="border-radius:50%; margin: 22px 1em 0px auto;"  src="./assets/images/israel.png" width="125" height="125" alt="" />
-                <img style="border-radius:50%; margin: 22px 1em 0px auto;"  src="./assets/images/turkey.png" width="125" height="125" alt="" />
+            <div>
+                <img [ngClass]="!selectedLanguage || selectedLanguage == 'ct' ? 'flag' : 'flag_grey'" src="./assets/images/catalunya.png" alt="" (click)="play_stop('ct')"/>
+                <img [ngClass]="!selectedLanguage || selectedLanguage == 'es' ? 'flag' : 'flag_grey'" src="./assets/images/spain.png" alt="" (click)="play_stop('es')"/>
+                <img [ngClass]="!selectedLanguage || selectedLanguage == 'en' ? 'flag' : 'flag_grey'" src="./assets/images/ukusa2.png" alt="" (click)="play_stop('en')"/>
+                <img [ngClass]="!selectedLanguage || selectedLanguage == 'fr' ? 'flag' : 'flag_grey'" src="./assets/images/france.png" alt="" (click)="play_stop('fr')"/>
+                <img [ngClass]="!selectedLanguage || selectedLanguage == 'de' ? 'flag' : 'flag_grey'" src="./assets/images/germany.png" alt="" (click)="play_stop('de')"/>
+                <img [ngClass]="!selectedLanguage || selectedLanguage == 'it' ? 'flag' : 'flag_grey'" src="./assets/images/italy.png" alt="" (click)="play_stop('it')"/>
+                <img [ngClass]="!selectedLanguage || selectedLanguage == 'pt' ? 'flag' : 'flag_grey'" src="./assets/images/portubrasil.jpg" alt="" (click)="play_stop('pt')"/>
+                <img [ngClass]="!selectedLanguage || selectedLanguage == 'nl' ? 'flag' : 'flag_grey'" src="./assets/images/nederland.png" alt="" (click)="play_stop('nl')"/>
+                <img [ngClass]="!selectedLanguage || selectedLanguage == 'se' ? 'flag' : 'flag_grey'" src="./assets/images/suecia.png" alt="" (click)="play_stop('se')"/>
+                <img [ngClass]="!selectedLanguage || selectedLanguage == 'no' ? 'flag' : 'flag_grey'" src="./assets/images/norway.png" alt="" (click)="play_stop('no')"/>
+                <img [ngClass]="!selectedLanguage || selectedLanguage == 'ru' ? 'flag' : 'flag_grey'" src="./assets/images/rusia.png" alt="" (click)="play_stop('ru')"/>
+                <img [ngClass]="!selectedLanguage || selectedLanguage == 'jp' ? 'flag' : 'flag_grey'" src="./assets/images/japan2.jpg" alt="" (click)="play_stop('jp')"/>
+                <img [ngClass]="!selectedLanguage || selectedLanguage == 'zh' ? 'flag' : 'flag_grey'" src="./assets/images/china.png" alt="" (click)="play_stop('zh')"/>
+                <img [ngClass]="!selectedLanguage || selectedLanguage == 'sa' ? 'flag' : 'flag_grey'" src="./assets/images/arab.png" alt="" (click)="play_stop('sa')"/>
+                <img [ngClass]="!selectedLanguage || selectedLanguage == 'il' ? 'flag' : 'flag_grey'" src="./assets/images/israel.png" alt="" (click)="play_stop('il')"/>
+                <img [ngClass]="!selectedLanguage || selectedLanguage == 'tr' ? 'flag' : 'flag_grey'" src="./assets/images/turkey.png" alt="" (click)="play_stop('tr')"/>
             </div>
-        <!--/a>-->
-        <!--<p><a routerLink="/users">Manage Users</a></p>-->
-        <!--<p><a routerLink="/empleados">Manage Empleados</a></p>-->
-        <!--<p><a routerLink="/citas">Manage Citas</a></p>-->
-        <!--<p><a routerLink="/cita/{id}">Mis Citas</a></p>-->
     </div>
 </div>

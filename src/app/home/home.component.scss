@@ -1,0 +1,15 @@
+.flag {
+  border-radius:50%;
+  margin: 22px 1em 0px auto;
+  width: 125px;
+  height: 125px;
+  cursor: pointer;
+}
+.flag_grey {
+  border-radius:50%;
+  margin: 22px 1em 0px auto;
+  width: 125px;
+  height: 125px;
+  cursor: pointer;
+  filter: grayscale(100%);
+}
