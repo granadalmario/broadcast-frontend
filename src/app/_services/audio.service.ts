@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {User} from '@app/_models';
 import {environment} from '@environments/environment';
-import {map} from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject} from 'rxjs';
 
@@ -19,16 +19,23 @@ export class AudioService {
     }
 
     playSoundWithBuffer( buffer ) {
-        this.audioSource = this.context.createBufferSource();
-        this.audioSource.connect( this.context.destination );
+        if (buffer.byteLength > 0) {
+            this.audioSource = this.context.createBufferSource();
+            this.audioSource.connect(this.context.destination);
 
-        this.context.decodeAudioData(buffer).then(( res ) => {
-            this.audioSource.buffer = res;
-            this.audioSource.start( 0 );
-        } );
+            this.context.decodeAudioData(buffer).then((res) => {
+                this.audioSource.buffer = res;
+                this.audioSource.start(0);
+            });
+        }
     }
 
     stopSound() {
-        this.audioSource.stop(0);
+        try {
+            this.audioSource.stop(0);
+        }
+        catch (error) {
+            console.log('Error stopping sound');
+        }
     }
 }
