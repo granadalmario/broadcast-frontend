@@ -12,6 +12,7 @@ export class AudioService {
     audioSource: AudioBufferSourceNode;
     constructor(private http: HttpClient) {
         this.context = new AudioContext();
+        this.unlockAudioContext(this.context);
     }
 
     getSocketFromLanguage(language: string) {
@@ -25,7 +26,7 @@ export class AudioService {
 
             this.context.decodeAudioData(buffer, (res) => {
                 this.audioSource.buffer = res;
-                this.audioSource.start(0);
+                this.audioSource.start();
             });
         }
     }
@@ -37,5 +38,14 @@ export class AudioService {
         catch (error) {
             console.log('Error stopping sound');
         }
+    }
+
+    unlockAudioContext(audioCtx) {
+        if (audioCtx.state !== 'suspended') { return };
+        const b = document.body;
+        const events = ['touchstart', 'touchend', 'mousedown', 'keydown'];
+        events.forEach(e => b.addEventListener(e, unlock, false));
+        function unlock() { audioCtx.resume().then(clean); }
+        function clean() { events.forEach(e => b.removeEventListener(e, unlock)); }
     }
 }
