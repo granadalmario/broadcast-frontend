@@ -23,7 +23,7 @@ export class AudioService {
             this.audioSource = this.context.createBufferSource();
             this.audioSource.connect(this.context.destination);
 
-            this.context.decodeAudioData(buffer).then((res) => {
+            this.context.decodeAudioData(buffer, (res) => {
                 this.audioSource.buffer = res;
                 this.audioSource.start(0);
             });
