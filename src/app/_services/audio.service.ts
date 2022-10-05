@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {User} from '@app/_models';
 import {environment} from '@environments/environment';
-import {map} from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject} from 'rxjs';
 
@@ -12,6 +12,7 @@ export class AudioService {
     audioSource: AudioBufferSourceNode;
     constructor(private http: HttpClient) {
         this.context = new AudioContext();
+        this.unlockAudioContext(this.context);
     }
 
     getSocketFromLanguage(language: string) {
@@ -19,16 +20,32 @@ export class AudioService {
     }
 
     playSoundWithBuffer( buffer ) {
-        this.audioSource = this.context.createBufferSource();
-        this.audioSource.connect( this.context.destination );
+        if (buffer.byteLength > 0) {
+            this.audioSource = this.context.createBufferSource();
+            this.audioSource.connect(this.context.destination);
 
-        this.context.decodeAudioData(buffer).then(( res ) => {
-            this.audioSource.buffer = res;
-            this.audioSource.start( 0 );
-        } );
+            this.context.decodeAudioData(buffer, (res) => {
+                this.audioSource.buffer = res;
+                this.audioSource.start();
+            });
+        }
     }
 
     stopSound() {
-        this.audioSource.stop(0);
+        try {
+            this.audioSource.stop(0);
+        }
+        catch (error) {
+            console.log('Error stopping sound');
+        }
+    }
+
+    unlockAudioContext(audioCtx) {
+        if (audioCtx.state !== 'suspended') { return };
+        const b = document.body;
+        const events = ['touchstart', 'touchend', 'mousedown', 'keydown'];
+        events.forEach(e => b.addEventListener(e, unlock, false));
+        function unlock() { audioCtx.resume().then(clean); }
+        function clean() { events.forEach(e => b.removeEventListener(e, unlock)); }
     }
 }

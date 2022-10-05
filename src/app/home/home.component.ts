@@ -60,7 +60,7 @@ export class HomeComponent {
 
     private setStatusText() {
         switch (this.selectedLanguage) {
-            case 'ca': {
+            case 'ct': {
                 this.statusText = 'Reproduint en Català, premi un altre cop per aturar-ho o una altra bandera per canviar d\'idioma';
                 break;
             }
