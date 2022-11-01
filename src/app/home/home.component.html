@@ -1,10 +1,12 @@
-﻿<div class="p-4">
+﻿<div class="p-4 fix_on_top">
+    <h1>Hi {{user.firstName}}!</h1>
+    <div class ="top" >
+        <div class ="top2"><p> {{statusText}} </p></div>
+    </div>
+</div>
+<div class="p-4">
     <div class="container">
-        <h1>Hi {{user.firstName}}!</h1>
-        <div class ="top" >
-            <div class ="top2"><p> {{statusText}} </p></div>
-        </div>
-        <div class="container_flags">
+        <div class="container_flags" style="margin-top: 100pt">
             <img [ngClass]="!selectedLanguage || selectedLanguage == 'ct' ? 'flag' : 'flag_grey'" src="./assets/images/catalunya.png" alt="" (click)="play_stop('ct')"/>
             <img [ngClass]="!selectedLanguage || selectedLanguage == 'es' ? 'flag' : 'flag_grey'" src="./assets/images/spain.png" alt="" (click)="play_stop('es')"/>
             <img [ngClass]="!selectedLanguage || selectedLanguage == 'en' ? 'flag' : 'flag_grey'" src="./assets/images/ukusa2.png" alt="" (click)="play_stop('en')"/>
